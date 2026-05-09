@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#264653" />
+<title>Perth & the South-West · 20 to 29 June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf3e7;
+    --paper: #fffaf0;
+    --sand: #f5e8c9;
+    --ocean: #c5dde2;
+    --ocean-deep: #9ec3cb;
+    --coast: #c4a777;
+    --ink: #264653;
+    --ink-soft: #4a6470;
+    --terracotta: #e76f51;
+    --teal: #2a9d8f;
+    --mustard: #e9c46a;
+    --rose: #e63946;
+    --sun: #f4a261;
+    --route-dash: #d97757;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; height: auto; }
+  a { color: var(--terracotta); text-decoration: none; border-bottom: 1px solid currentColor; }
+  a:hover { color: var(--rose); }
+
+  .hand { font-family: 'Caveat', cursive; }
+  .serif { font-family: 'Fraunces', Georgia, serif; }
+
+  /* hero */
+  .hero {
+    min-height: 100vh; min-height: 100svh;
+    padding: clamp(1.5rem, 5vw, 4rem) clamp(1.2rem, 5vw, 3rem);
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(244,162,97,0.18), transparent 50%),
+      radial-gradient(circle at 10% 90%, rgba(42,157,143,0.14), transparent 55%),
+      var(--cream);
+    overflow: hidden;
+  }
+  .hero-grain { position: absolute; inset: 0; opacity: 0.6; pointer-events: none; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.18'/></svg>");
+  }
+  .hero-inner { position: relative; max-width: 1100px; margin: 0 auto; width: 100%; }
+  .kicker { font-family: 'Caveat', cursive; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--terracotta); transform: rotate(-2deg); display: inline-block; }
+  .hero h1 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(2.5rem, 9vw, 6rem); line-height: 0.95; letter-spacing: -0.02em; margin: 0.5rem 0 1.4rem; font-weight: 700; }
+  .hero h1 em { font-style: italic; color: var(--terracotta); font-weight: 500; }
+  .hero-tag { font-size: clamp(1rem, 1.6vw, 1.2rem); max-width: 36rem; color: var(--ink-soft); margin-bottom: 2.4rem; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 1.4rem 2.8rem; font-size: 0.95rem; }
+  .hero-meta div span { display: block; font-family: 'Caveat', cursive; color: var(--terracotta); font-size: 1.4rem; line-height: 1; margin-bottom: 0.2rem; }
+  .hero-travelers { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--coast); display: flex; flex-wrap: wrap; gap: 1.6rem 2.4rem; align-items: center; font-size: 0.95rem; }
+  .hero-travelers .pair { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .hero-travelers .pair .from { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--ink-soft); }
+  .scroll-cue { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-family: 'Caveat', cursive; font-size: 1.2rem; color: var(--ink-soft); text-align: center; animation: bob 2.4s ease-in-out infinite; }
+  .scroll-cue::after { content: '↓'; display: block; font-size: 1.6rem; }
+  @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+  /* layout */
+  .trip { position: relative; background: var(--cream); }
+  .trip-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .map-pane { position: sticky; top: 0; z-index: 5; height: 44vh; background: var(--paper); border-bottom: 1px solid var(--coast); box-shadow: 0 6px 18px rgba(38,70,83,0.08); }
+  .cards-pane { padding: 2.5rem clamp(1rem, 4vw, 2.5rem); max-width: 720px; margin: 0 auto; width: 100%; }
+
+  @media (min-width: 900px) {
+    .trip-grid { grid-template-columns: minmax(380px, 46%) 54%; }
+    .map-pane { height: 100vh; height: 100svh; border-bottom: none; border-right: 1px solid var(--coast); box-shadow: none; }
+    .cards-pane { padding: 5rem clamp(1.5rem, 4vw, 3rem); max-width: none; }
+  }
+
+  .map-pane svg { width: 100%; height: 100%; display: block; }
+  .map-frame { position: absolute; inset: 0.5rem; border: 2px dashed var(--coast); border-radius: 6px; pointer-events: none; z-index: 2; }
+  .map-title { position: absolute; top: 1rem; left: 1.2rem; z-index: 3; font-family: 'Caveat', cursive; font-size: 1.3rem; color: var(--ink); background: var(--paper); padding: 0.15rem 0.55rem; border-radius: 4px; line-height: 1.1; }
+  .map-legend { position: absolute; bottom: 0.9rem; right: 1rem; z-index: 3; font-family: 'Caveat', cursive; font-size: 0.95rem; color: var(--ink-soft); background: var(--paper); padding: 0.25rem 0.55rem; border-radius: 4px; text-align: right; line-height: 1.25; }
+  .map-legend strong { display: block; color: var(--terracotta); }
+
+  /* day cards */
+  .day { margin: 0 0 6rem; padding-top: 2.5rem; position: relative; }
+  .day:first-child { padding-top: 0.5rem; }
+  .day-head { display: flex; align-items: baseline; gap: 0.9rem; margin-bottom: 0.4rem; }
+  .day-num { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(2.2rem, 7vw, 3.6rem); line-height: 1; color: var(--terracotta); letter-spacing: -0.02em; }
+  .day-num small { font-size: 0.5em; color: var(--ink-soft); font-weight: 500; }
+  .day-date { font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--ink-soft); transform: rotate(-1deg); display: inline-block; }
+  .day-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(1.4rem, 3.6vw, 1.95rem); line-height: 1.2; margin: 0.5rem 0 1.6rem; color: var(--ink); letter-spacing: -0.01em; }
+  .day-photo { aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; margin: 0 0 1.8rem; background: var(--sand); transform: rotate(-0.3deg); box-shadow: 0 1px 0 rgba(38,70,83,0.06), 0 8px 22px rgba(38,70,83,0.12), 0 0 0 7px var(--paper), 0 0 0 8px var(--coast); position: relative; }
+  .day:nth-child(2n) .day-photo { transform: rotate(0.5deg); }
+  .day-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .day-photo:hover img { transform: scale(1.04); }
+  .day-photo .caption { position: absolute; bottom: 0.4rem; left: 0.6rem; background: rgba(255,250,240,0.92); padding: 0.1rem 0.5rem; border-radius: 3px; font-family: 'Caveat', cursive; font-size: 1rem; color: var(--ink); }
+  .day-lede { font-size: 1.05rem; color: var(--ink); margin: 0 0 1.6rem; line-height: 1.55; }
+  .day-stops { list-style: none; padding: 0 0 0 1rem; margin: 0 0 1.6rem; border-left: 2px dashed var(--coast); }
+  .day-stops li { position: relative; padding: 0.55rem 0 0.55rem 0.8rem; font-size: 0.98rem; line-height: 1.5; }
+  .day-stops li::before { content: ''; position: absolute; left: -7px; top: 1.05rem; width: 11px; height: 11px; background: var(--mustard); border-radius: 50%; border: 2px solid var(--paper); box-shadow: 0 0 0 1px var(--coast); }
+  .day-stops li b { color: var(--terracotta); font-weight: 600; }
+  .day-stops li .time { font-family: 'Caveat', cursive; color: var(--ink-soft); font-size: 1.05rem; margin-right: 0.45rem; }
+  .day-foot { display: flex; flex-wrap: wrap; gap: 1.4rem; align-items: baseline; font-size: 0.92rem; color: var(--ink-soft); }
+  .day-foot span b { font-weight: 600; color: var(--ink); }
+  .day-foot .pill { font-family: 'Caveat', cursive; font-size: 1.05rem; color: var(--terracotta); margin-right: 0.3rem; }
+  .day-tip { font-family: 'Caveat', cursive; font-size: 1.15rem; color: var(--ink-soft); background: rgba(233,196,106,0.18); padding: 0.55rem 0.9rem; border-radius: 6px; transform: rotate(-0.3deg); margin: 1.2rem 0 0; }
+  .day-tip::before { content: '✱ '; color: var(--terracotta); }
+  .split { border: 2px dashed var(--coast); padding: 1rem 1.1rem; border-radius: 8px; margin: 1rem 0; background: var(--paper); }
+  .split h4 { font-family: 'Caveat', cursive; font-weight: 700; color: var(--terracotta); font-size: 1.3rem; margin: 0 0 0.4rem; }
+
+  /* edit mode */
+  body.editing { padding-bottom: 5rem; }
+  .day-handle {
+    position: absolute;
+    top: 2.5rem; right: 0.4rem;
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--paper);
+    border: 1.5px solid var(--coast);
+    cursor: grab;
+    display: none;
+    align-items: center; justify-content: center;
+    color: var(--ink-soft);
+    font-size: 1.4rem;
+    user-select: none;
+    z-index: 4;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.2s, color 0.2s;
+  }
+  body.editing .day-handle { display: flex; }
+  body.editing .day { border: 1.5px dashed transparent; border-radius: 12px; padding: 1rem 0.6rem 0; transition: border-color 0.2s; }
+  body.editing .day:hover { border-color: var(--coast); }
+  .day-handle:hover { transform: scale(1.08); border-color: var(--terracotta); color: var(--terracotta); box-shadow: 0 4px 14px rgba(38,70,83,0.18); }
+  .day-handle:active { cursor: grabbing; }
+  .day.sortable-ghost { opacity: 0.35; background: var(--sand); border: 2px dashed var(--terracotta) !important; }
+  .day.sortable-chosen { box-shadow: 0 12px 30px rgba(38,70,83,0.18); }
+
+  .toolbar {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.5rem;
+    border-radius: 999px;
+    box-shadow: 0 12px 32px rgba(38,70,83,0.32);
+    display: flex;
+    gap: 0.3rem;
+    z-index: 50;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: calc(100% - 1.5rem);
+    justify-content: center;
+  }
+  .toolbar button {
+    background: transparent;
+    color: var(--paper);
+    border: none;
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background 0.15s;
+  }
+  .toolbar button:hover { background: rgba(255,255,255,0.1); }
+  .toolbar button.primary { background: var(--terracotta); }
+  .toolbar button.primary:hover { background: var(--rose); }
+  .toolbar button.ghost { color: rgba(255,250,240,0.6); }
+  .toolbar .sep { width: 1px; height: 22px; background: rgba(255,255,255,0.2); margin: 0 0.2rem; }
+  .toolbar.editing button.primary { background: var(--teal); }
+  .toolbar.editing button.primary:hover { background: #228477; }
+  .toolbar .toast {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%; transform: translateX(-50%);
+    background: var(--paper);
+    color: var(--ink);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .toolbar .toast.show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+  @media (max-width: 540px) {
+    .toolbar { font-size: 0.82rem; padding: 0.35rem; bottom: 0.6rem; }
+    .toolbar button { padding: 0.5rem 0.7rem; }
+    .toolbar .label-long { display: none; }
+  }
+
+  .edit-banner {
+    background: rgba(42,157,143,0.1);
+    border: 1px dashed var(--teal);
+    color: var(--ink);
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    margin: 0 auto 2rem;
+    max-width: 720px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    display: none;
+  }
+  body.editing .edit-banner { display: block; }
+  .edit-banner b { color: var(--teal); }
+
+  /* asides */
+  section.aside { padding: 5rem clamp(1.2rem, 5vw, 3rem); background: var(--paper); border-top: 1px solid var(--coast); }
+  section.aside.alt { background: var(--cream); }
+  .aside-inner { max-width: 1100px; margin: 0 auto; }
+  .aside h2 { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 0.8rem; line-height: 1; letter-spacing: -0.02em; }
+  .aside h2 em { color: var(--terracotta); font-style: italic; font-weight: 500; }
+  .aside p.lead { color: var(--ink-soft); max-width: 36rem; margin-bottom: 2.4rem; font-size: 1.05rem; }
+  .brief-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .brief-card { background: var(--paper); border: 1px solid var(--coast); padding: 1.2rem 1.3rem; border-radius: 10px; transition: transform 0.2s, box-shadow 0.2s; }
+  section.aside.alt .brief-card { background: var(--cream); }
+  .brief-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(38,70,83,0.08); }
+  .brief-card h3 { font-family: 'Caveat', cursive; color: var(--terracotta); font-size: 1.7rem; margin: 0 0 0.5rem; line-height: 1; }
+  .brief-card ul { padding-left: 1.1rem; margin: 0; font-size: 0.95rem; }
+  .brief-card li { margin: 0.3rem 0; line-height: 1.5; }
+  .brief-card .row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.35rem 0; border-bottom: 1px dashed var(--sand); font-size: 0.92rem; }
+  .brief-card .row:last-child { border-bottom: none; }
+  .brief-card .row b { font-weight: 600; }
+
+  .nocar { background: linear-gradient(180deg, rgba(42,157,143,0.06), rgba(42,157,143,0.02)); border-top: 1px solid var(--coast); }
+  .nocar-list { display: grid; gap: 0.6rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .nocar-list li { background: var(--paper); border: 1px solid var(--coast); border-radius: 8px; padding: 0.8rem 1rem; display: flex; gap: 0.9rem; align-items: baseline; font-size: 0.95rem; line-height: 1.5; }
+  .nocar-list li b { font-family: 'Caveat', cursive; font-weight: 700; color: var(--teal); font-size: 1.25rem; line-height: 1; min-width: 3.5rem; }
+
+  footer { text-align: center; padding: 3rem 1.5rem 7rem; background: var(--ink); color: var(--paper); font-family: 'Caveat', cursive; font-size: 1.2rem; }
+  footer .signoff { font-size: 1.7rem; color: var(--mustard); margin-bottom: 0.4rem; }
+  footer .small { font-family: 'Inter', sans-serif; font-size: 0.85rem; opacity: 0.65; margin-top: 1rem; }
+
+  #car-group, #plane-sin, #plane-syd, #plane-out-sin, #plane-out-syd, #ferry-icon, #train-icon { transform-box: fill-box; transform-origin: center; }
+  #car-group { transition: opacity 0.4s; }
+  .pin-pulse { transform-box: fill-box; transform-origin: center; }
+  @keyframes ringPulse { 0% { r: 5; opacity: 0.7; } 100% { r: 18; opacity: 0; } }
+  .pin-pulse.on { animation: ringPulse 1.8s ease-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ╭───────── HERO ─────────╮ -->
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <span class="kicker">a 10-day plan, west coast Australia</span>
+    <h1>Perth &amp; the<br><em>South-West</em>.</h1>
+    <p class="hero-tag">Two planes, one toy car, ten days. From the Indian-Ocean side of Perth down to where two oceans meet at Cape Leeuwin, and back, via vineyards, a quokka, and at least one whale.</p>
+    <div class="hero-meta">
+      <div><span>when</span><b>20 to 29 June 2026</b></div>
+      <div><span>where</span><b>Perth · South-West WA</b></div>
+      <div><span>weather</span><b>Winter, 10 to 18°C</b></div>
+    </div>
+    <div class="hero-travelers">
+      <div class="pair">✈️ <span class="from">from Singapore</span> <b>Binny &amp; Deepshikha</b></div>
+      <div class="pair">✈️ <span class="from">from Sydney</span> <b>Chaitanya &amp; Ketaki</b></div>
+    </div>
+  </div>
+  <div class="scroll-cue hand">scroll the trip</div>
+</section>
+
+<!-- ╭───────── TRIP ─────────╮ -->
+<section class="trip">
+  <div class="trip-grid">
+
+    <aside class="map-pane" id="map-pane">
+      <div class="map-frame"></div>
+      <div class="map-title hand">our route, Western Australia</div>
+      <div class="map-legend hand"><strong>jun 2026</strong>follow the car</div>
+
+      <svg viewBox="0 0 400 700" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-label="Hand-drawn map of South-West Western Australia">
+        <defs>
+          <filter id="rough" x="0" y="0">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="3"/>
+            <feDisplacementMap in="SourceGraphic" scale="1.6"/>
+          </filter>
+          <linearGradient id="carBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ef5b4a"/>
+            <stop offset="100%" stop-color="#c1392b"/>
+          </linearGradient>
+          <pattern id="waves" width="40" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 0 10 Q 10 4 20 10 T 40 10" stroke="#9ec3cb" stroke-width="0.8" fill="none" opacity="0.5"/>
+          </pattern>
+        </defs>
+
+        <rect width="400" height="700" fill="#c5dde2"/>
+        <rect width="400" height="700" fill="url(#waves)"/>
+
+        <g transform="translate(40,55)" opacity="0.55">
+          <circle r="22" fill="none" stroke="#264653" stroke-width="1"/>
+          <path d="M 0,-22 L 4,0 L 0,22 L -4,0 Z" fill="#264653"/>
+          <path d="M -22,0 L 0,3 L 22,0 L 0,-3 Z" fill="#264653" opacity="0.35"/>
+          <text x="0" y="-26" text-anchor="middle" font-family="Caveat, cursive" font-size="11" fill="#264653">N</text>
+        </g>
+
+        <g opacity="0.5" font-size="14">
+          <text x="55" y="200" font-family="Caveat" fill="#5a8a93">🐟</text>
+          <text x="30" y="380" font-family="Caveat" fill="#5a8a93">🐠</text>
+          <text x="40" y="540" font-family="Caveat" fill="#5a8a93">🐋</text>
+        </g>
+        <text x="55" y="280" font-family="Caveat, cursive" font-size="13" fill="#5a8a93" opacity="0.85" transform="rotate(-12 55 280)">~ Indian Ocean ~</text>
+
+        <g filter="url(#rough)">
+          <path d="M 280,0 L 400,0 L 400,700 L 175,700 Q 145,660 155,610 Q 170,570 145,540 Q 130,510 145,488 Q 158,470 140,448 Q 110,432 130,418 Q 158,408 178,402 L 195,392 Q 215,378 222,365 Q 230,348 222,330 Q 215,300 222,275 Q 226,250 220,225 Q 215,200 230,180 Q 240,165 232,148 Q 224,128 240,108 Q 250,95 245,80 Q 240,60 255,38 Q 265,18 280,0 Z" fill="#f5e8c9" stroke="#c4a777" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M 290,40 Q 330,80 360,200 Q 380,330 360,500 Q 340,640 320,690" fill="none" stroke="#e0c899" stroke-width="0.8" opacity="0.7"/>
+          <path d="M 240,108 Q 280,118 330,105 Q 360,98 400,95" fill="none" stroke="#9ec3cb" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+        </g>
+
+        <text x="320" y="240" font-family="Caveat, cursive" font-size="14" fill="#a17c47" opacity="0.7" transform="rotate(-8 320 240)">Wheatbelt</text>
+        <text x="300" y="500" font-family="Caveat, cursive" font-size="13" fill="#a17c47" opacity="0.7" transform="rotate(-4 300 500)">Karri forest</text>
+        <text x="65" y="660" font-family="Caveat, cursive" font-size="11" fill="#5a8a93" opacity="0.7" transform="rotate(-6 65 660)">~ Southern Ocean ~</text>
+
+        <path id="route" d="M 270,108 L 245,168 L 235,360 Q 195,395 145,415 L 132,432 L 95,448 L 132,432 L 138,492 L 152,575 L 138,492 L 235,360 L 270,108 L 240,118 L 200,135 L 240,118 L 270,108"
+          fill="none" stroke="var(--route-dash)" stroke-width="2.4" stroke-dasharray="6 5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+
+        <path id="route-plane-sin" d="M 0,40 Q 100,60 270,108" stroke="#9ec3cb" stroke-width="1.6" fill="none" stroke-dasharray="3 4" opacity="0.6"/>
+        <path id="route-plane-syd" d="M 400,40 Q 320,60 270,108" stroke="#9ec3cb" stroke-width="1.6" fill="none" stroke-dasharray="3 4" opacity="0.6"/>
+
+        <g class="pin" data-key="perth" transform="translate(270,108)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="6" fill="#e76f51" stroke="#fffaf0" stroke-width="2"/>
+          <text x="10" y="4" font-family="Fraunces, serif" font-weight="700" font-size="13" fill="#264653">Perth</text>
+          <text x="10" y="18" font-family="Caveat, cursive" font-size="12" fill="#4a6470">base camp</text>
+        </g>
+        <g class="pin" data-key="penguin" transform="translate(245,168)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="4.5" fill="#2a9d8f" stroke="#fffaf0" stroke-width="2"/>
+          <text x="9" y="4" font-family="Fraunces, serif" font-weight="600" font-size="11" fill="#264653">Penguin Is.</text>
+          <text x="9" y="16" font-family="Caveat, cursive" font-size="11" fill="#4a6470">🐧</text>
+        </g>
+        <g class="pin" data-key="bunbury" transform="translate(235,360)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="4.5" fill="#2a9d8f" stroke="#fffaf0" stroke-width="2"/>
+          <text x="9" y="4" font-family="Fraunces, serif" font-weight="600" font-size="11" fill="#264653">Bunbury</text>
+          <text x="9" y="16" font-family="Caveat, cursive" font-size="11" fill="#4a6470">🏖️</text>
+        </g>
+        <g class="pin" data-key="cape-nat" transform="translate(145,415)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="4.5" fill="#2a9d8f" stroke="#fffaf0" stroke-width="2"/>
+          <text x="-9" y="4" text-anchor="end" font-family="Fraunces, serif" font-weight="600" font-size="11" fill="#264653">Cape Naturaliste</text>
+          <text x="-9" y="16" text-anchor="end" font-family="Caveat, cursive" font-size="11" fill="#4a6470">🪨</text>
+        </g>
+        <g class="pin" data-key="dunsborough" transform="translate(132,432)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="4.5" fill="#2a9d8f" stroke="#fffaf0" stroke-width="2"/>
+          <text x="-9" y="4" text-anchor="end" font-family="Fraunces, serif" font-weight="600" font-size="11" fill="#264653">Dunsborough</text>
+          <text x="-9" y="16" text-anchor="end" font-family="Caveat, cursive" font-size="11" fill="#4a6470">🐋</text>
+        </g>
+        <g class="pin" data-key="margaret-river" transform="translate(138,492)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="4.5" fill="#2a9d8f" stroke="#fffaf0" stroke-width="2"/>
+          <text x="-9" y="4" text-anchor="end" font-family="Fraunces, serif" font-weight="600" font-size="11" fill="#264653">Margaret River</text>
+          <text x="-9" y="16" text-anchor="end" font-family="Caveat, cursive" font-size="11" fill="#4a6470">🍷</text>
+        </g>
+        <g class="pin" data-key="leeuwin" transform="translate(152,575)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="4.5" fill="#2a9d8f" stroke="#fffaf0" stroke-width="2"/>
+          <text x="-9" y="4" text-anchor="end" font-family="Fraunces, serif" font-weight="600" font-size="11" fill="#264653">Cape Leeuwin</text>
+          <text x="-9" y="16" text-anchor="end" font-family="Caveat, cursive" font-size="11" fill="#4a6470">🔦</text>
+        </g>
+        <g class="pin" data-key="fremantle" transform="translate(240,118)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="4.5" fill="#2a9d8f" stroke="#fffaf0" stroke-width="2"/>
+          <text x="-9" y="4" text-anchor="end" font-family="Fraunces, serif" font-weight="600" font-size="11" fill="#264653">Fremantle</text>
+          <text x="-9" y="16" text-anchor="end" font-family="Caveat, cursive" font-size="11" fill="#4a6470">🚂</text>
+        </g>
+        <g class="pin" data-key="rottnest" transform="translate(200,135)">
+          <circle class="pin-pulse" r="5" fill="none" stroke="#e76f51" stroke-width="1.5"/>
+          <circle class="pin-dot" r="4.5" fill="#2a9d8f" stroke="#fffaf0" stroke-width="2"/>
+          <text x="-9" y="4" text-anchor="end" font-family="Fraunces, serif" font-weight="600" font-size="11" fill="#264653">Rottnest Is.</text>
+          <text x="-9" y="16" text-anchor="end" font-family="Caveat, cursive" font-size="11" fill="#4a6470">⛴️</text>
+        </g>
+
+        <text x="95" y="445" font-family="Caveat, cursive" font-size="14" fill="#264653" opacity="0.7">🐋</text>
+
+        <g id="plane-sin" opacity="0"><text font-size="20" fill="#264653">✈️</text></g>
+        <g id="plane-syd" opacity="0"><text font-size="20" fill="#264653">✈️</text></g>
+        <g id="plane-out-syd" opacity="0"><text font-size="20" fill="#264653">✈️</text></g>
+        <g id="plane-out-sin" opacity="0"><text font-size="20" fill="#264653">✈️</text></g>
+        <g id="train-icon" opacity="0"><text font-size="20" fill="#264653">🚂</text></g>
+        <g id="ferry-icon" opacity="0"><text font-size="20" fill="#264653">⛴️</text></g>
+
+        <g id="car-group" transform="translate(270,108)">
+          <g id="car-rotor">
+            <ellipse cx="0" cy="9" rx="13" ry="2.6" fill="#000" opacity="0.18"/>
+            <rect x="-12" y="-7" width="24" height="11" rx="3" fill="url(#carBody)" stroke="#7a1f15" stroke-width="0.8"/>
+            <rect x="-7" y="-12" width="14" height="6" rx="2" fill="#fffaf0" stroke="#7a1f15" stroke-width="0.8"/>
+            <rect x="-6" y="-11" width="5.5" height="4" fill="#264653" opacity="0.5"/>
+            <rect x="0.5" y="-11" width="5.5" height="4" fill="#264653" opacity="0.5"/>
+            <circle cx="-7" cy="5" r="3" fill="#264653"/>
+            <circle cx="-7" cy="5" r="1.4" fill="#fffaf0"/>
+            <circle cx="7" cy="5" r="3" fill="#264653"/>
+            <circle cx="7" cy="5" r="1.4" fill="#fffaf0"/>
+            <circle cx="11" cy="-2" r="1.2" fill="#f4d35e"/>
+          </g>
+        </g>
+
+        <g transform="translate(270,108)">
+          <text x="14" y="-12" font-family="Caveat, cursive" font-size="11" fill="#e76f51" font-weight="700">★ start &amp; end</text>
+        </g>
+      </svg>
+    </aside>
+
+    <main class="cards-pane" id="cards-pane">
+      <div class="edit-banner">
+        <b>Edit mode.</b> Drag the handle (≡) on the right of any day to reorder. Tap <b>Copy link</b> to share this exact arrangement.
+      </div>
+      <div id="days-container">
+
+        <article class="day" id="day-1" data-progress="0.00" data-pin="perth">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 01<small> / 10</small></h3>
+            <span class="day-date">Sat · 20 Jun</span>
+          </header>
+          <h2 class="day-title">Two planes land in Perth.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1100&q=80&auto=format&fit=crop" alt="Perth skyline" loading="lazy"/>
+            <span class="caption">Perth from the Swan River</span>
+          </div>
+          <p class="day-lede">Both parties land within hours of each other. No big plans tonight, just dinner together and an early sleep before jet-lag wins.</p>
+          <ul class="day-stops">
+            <li><span class="time">14:55</span> <b>Chaitanya &amp; Ketaki</b> arrive Perth (JQ986)</li>
+            <li><span class="time">17:10</span> <b>Binny &amp; Deepshikha</b> arrive Perth (TR8)</li>
+            <li><span class="time">20:00</span> Easy walk-in dinner near the apartment</li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">stay</span><b>Perth CBD</b></span>
+            <span><span class="pill">tonight</span>Saint Brigid or Annalakshmi (veg)</span>
+          </div>
+        </article>
+
+        <article class="day" id="day-2" data-progress="0.20" data-pin="bunbury">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 02<small> / 10</small></h3>
+            <span class="day-date">Sun · 21 Jun</span>
+          </header>
+          <h2 class="day-title">Pick up the car. Penguins, then south.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1724184540484-f2102d308e5a?w=1100&q=80&auto=format&fit=crop" alt="Penguin Island" loading="lazy"/>
+            <span class="caption">Penguin Island, Rockingham</span>
+          </div>
+          <p class="day-lede">Day one of the road trip. Rental from Perth city, ferry to Penguin Island for a couple of hours, then keep going to Bunbury.</p>
+          <ul class="day-stops">
+            <li><span class="time">09:00</span> Pick up rental, Perth city</li>
+            <li><span class="time">11:00</span> <b>Penguin Island</b> ferry, beach walk</li>
+            <li><span class="time">14:00</span> Lunch in Rockingham, drive on</li>
+            <li><span class="time">16:30</span> Bunbury, sunset on Back Beach</li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">drive</span><b>180 km · 2½ h</b></span>
+            <span><span class="pill">stay</span>Bunbury</span>
+          </div>
+          <div class="day-tip">Call Penguin Island Discovery Centre the day before to confirm ferries are running.</div>
+        </article>
+
+        <article class="day" id="day-3" data-progress="0.28" data-pin="dunsborough">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 03<small> / 10</small></h3>
+            <span class="day-date">Mon · 22 Jun</span>
+          </header>
+          <h2 class="day-title">Cape Naturaliste, then a bay at Dunsborough.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1640885378359-a1e11694554f?w=1100&q=80&auto=format&fit=crop" alt="Cape Naturaliste coastline" loading="lazy"/>
+            <span class="caption">Cape Naturaliste lookout</span>
+          </div>
+          <p class="day-lede">Short drive day. Lighthouse, two short walks, then settle in at Dunsborough for two nights.</p>
+          <ul class="day-stops">
+            <li><span class="time">11:00</span> <b>Cape Naturaliste Lighthouse</b> + Whale Lookout</li>
+            <li><span class="time">14:30</span> <b>Sugarloaf Rock</b>, granite islet over the Indian Ocean</li>
+            <li><span class="time">17:00</span> Sunset at <b>Meelup Beach</b></li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">drive</span><b>140 km · 2 h</b></span>
+            <span><span class="pill">stay</span>Dunsborough (2 nights)</span>
+          </div>
+        </article>
+
+        <article class="day" id="day-4" data-progress="0.35" data-pin="dunsborough">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 04<small> / 10</small></h3>
+            <span class="day-date">Tue · 23 Jun</span>
+          </header>
+          <h2 class="day-title">Whales, Geographe Bay.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1742774131119-e9791ebba11d?w=1100&q=80&auto=format&fit=crop" alt="Humpback whale watching" loading="lazy"/>
+            <span class="caption">Humpbacks, southbound migration</span>
+          </div>
+          <p class="day-lede">Morning whale tour out of Dunsborough. June is the start of humpback &amp; southern right whale season here. Slow afternoon: a beach, a tasting flight.</p>
+          <ul class="day-stops">
+            <li><span class="time">~09:00</span> Whale tour boards (around 2½ h on the water)</li>
+            <li><span class="time">14:30</span> <b>Eagle Bay Brewing Co.</b>, fireplace, vegetarian pizza</li>
+            <li><span class="time">17:00</span> Sunset on Bunker Bay</li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">book</span><a href="https://www.legendcharters.com.au/" target="_blank" rel="noopener">Legend Charters</a></span>
+            <span><span class="pill">cost</span>around A$100 pp</span>
+          </div>
+          <div class="day-tip">Take seasickness tablets 30 minutes before boarding.</div>
+        </article>
+
+        <article class="day" id="day-5" data-progress="0.40" data-pin="margaret-river">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 05<small> / 10</small></h3>
+            <span class="day-date">Wed · 24 Jun</span>
+          </header>
+          <h2 class="day-title">Margaret River. Chocolate, caves, vines.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1640885100568-e2e9c5b8af8f?w=1100&q=80&auto=format&fit=crop" alt="Margaret River vineyard" loading="lazy"/>
+            <span class="caption">Margaret River vineyards</span>
+          </div>
+          <p class="day-lede">Karri forest, a chocolate factory, a cave, and a long winery lunch. June is low season; nothing is crowded.</p>
+          <ul class="day-stops">
+            <li><span class="time">10:00</span> <b>Margaret River Chocolate Co.</b>, free tastings</li>
+            <li><span class="time">11:30</span> <b>Mammoth Cave</b>, self-guided audio tour</li>
+            <li><span class="time">13:30</span> Lunch at <b>Vasse Felix</b> or <b>Voyager Estate</b></li>
+            <li><span class="time">17:00</span> Check in, walk along the river</li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">drive</span><b>70 km · 1 h</b></span>
+            <span><span class="pill">stay</span>Margaret River town</span>
+          </div>
+        </article>
+
+        <article class="day" id="day-6" data-progress="0.86" data-pin="leeuwin">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 06<small> / 10</small></h3>
+            <span class="day-date">Thu · 25 Jun</span>
+          </header>
+          <h2 class="day-title">Cape Leeuwin, then back to Perth.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1688431083574-638eebc60897?w=1100&q=80&auto=format&fit=crop" alt="Cape Leeuwin lighthouse" loading="lazy"/>
+            <span class="caption">Cape Leeuwin, where two oceans meet</span>
+          </div>
+          <p class="day-lede">Morning at the southernmost tip. Two oceans meet here. Then the long drive back to Perth.</p>
+          <ul class="day-stops">
+            <li><span class="time">09:30</span> <b>Lighthouse tour</b> + walk to the meeting of the oceans</li>
+            <li><span class="time">11:30</span> Coffee in Augusta</li>
+            <li><span class="time">13:30</span> Lunch break in Busselton</li>
+            <li><span class="time">~18:30</span> Arrive Perth, return car</li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">drive</span><b>340 km · 4 h</b></span>
+            <span><span class="pill">stay</span>Perth (3 nights)</span>
+          </div>
+        </article>
+
+        <article class="day" id="day-7" data-progress="0.92" data-pin="fremantle">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 07<small> / 10</small></h3>
+            <span class="day-date">Fri · 26 Jun</span>
+          </header>
+          <h2 class="day-title">Fremantle by train.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1721135215526-856c936ff69d?w=1100&q=80&auto=format&fit=crop" alt="Fremantle harbour" loading="lazy"/>
+            <span class="caption">Fremantle Fishing Boat Harbour</span>
+          </div>
+          <p class="day-lede">Take the Fremantle Line, 30 minutes, A$5. Spend the day in Australia&rsquo;s prettiest port town.</p>
+          <ul class="day-stops">
+            <li><span class="time">10:00</span> <b>Fremantle Markets</b> (Fri to Sun only, perfect day)</li>
+            <li><span class="time">14:00</span> Walk the <b>West End</b> heritage precinct</li>
+            <li><span class="time">16:00</span> <b>Little Creatures Brewery</b>, beer hall</li>
+            <li><span class="time">19:00</span> Train back, easy dinner</li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">transit</span>train, A$5 each way</span>
+            <span><span class="pill">walk</span>5 to 7 km on foot</span>
+          </div>
+        </article>
+
+        <article class="day" id="day-8" data-progress="0.96" data-pin="rottnest">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 08<small> / 10</small></h3>
+            <span class="day-date">Sat · 27 Jun</span>
+          </header>
+          <h2 class="day-title">Rottnest Island.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1730731200611-ddc6105fa8dd?w=1100&q=80&auto=format&fit=crop" alt="Quokka on Rottnest Island" loading="lazy"/>
+            <span class="caption">Quokka, Rottnest Island</span>
+          </div>
+          <p class="day-lede">Early ferry. Rent bikes on arrival, the island is car-free. Cycle clockwise: Pinky Beach, Salmon Bay, the lighthouse, The Basin. Quokkas everywhere.</p>
+          <ul class="day-stops">
+            <li><span class="time">08:30</span> Ferry Fremantle to Rottnest, 25 min</li>
+            <li><span class="time">09:15</span> Bike + snorkel rental at Pedal &amp; Flipper</li>
+            <li><span class="time">10:00</span> Cycle the island, pace it, swim if bold</li>
+            <li><span class="time">16:30</span> Ferry back, train to Perth</li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">book</span><a href="https://www.rottnestexpress.com.au/" target="_blank" rel="noopener">Rottnest Express</a></span>
+            <span><span class="pill">combo</span>ferry + bike, around A$110</span>
+          </div>
+          <div class="day-tip">No selfies holding quokkas. Squat low, let them come to you.</div>
+        </article>
+
+        <article class="day" id="day-9" data-progress="0.99" data-pin="perth">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 09<small> / 10</small></h3>
+            <span class="day-date">Sun · 28 Jun</span>
+          </header>
+          <h2 class="day-title">Kings Park, then the group splits.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1627973511509-d229319b8b5d?w=1100&q=80&auto=format&fit=crop" alt="Kings Park, Perth" loading="lazy"/>
+            <span class="caption">Kings Park &amp; Botanic Garden</span>
+          </div>
+          <p class="day-lede">Morning at Kings Park, all four together. Coffee, the canopy walkway, a slow stroll to Hyde Park. Then airport drop for Chaitanya &amp; Ketaki.</p>
+          <div class="split">
+            <h4>Together, morning</h4>
+            <ul class="day-stops" style="border-left:none; padding-left:0;">
+              <li style="padding-left:0;"><span class="time">09:00</span> Coffee at Botanical Café, Kings Park</li>
+              <li style="padding-left:0;"><span class="time">10:00</span> Federation Walkway, DNA Tower lookout</li>
+              <li style="padding-left:0;"><span class="time">13:00</span> Group lunch, Tiisch in Northbridge</li>
+              <li style="padding-left:0;"><span class="time">14:00</span> Drop Chaitanya &amp; Ketaki at airport</li>
+            </ul>
+          </div>
+          <div class="split">
+            <h4>Solo, Binny &amp; Deepshikha</h4>
+            <ul class="day-stops" style="border-left:none; padding-left:0;">
+              <li style="padding-left:0;"><span class="time">15:30</span> <b>Mary Street Bakery</b>, Highgate</li>
+              <li style="padding-left:0;"><span class="time">17:00</span> <b>Cottesloe Beach</b> sunset</li>
+              <li style="padding-left:0;"><span class="time">19:30</span> Dinner, Indiana Tea House (beachside)</li>
+            </ul>
+          </div>
+          <div class="day-foot">
+            <span><span class="pill">flight</span><b>16:05 PER → SYD</b>, JQ987</span>
+          </div>
+        </article>
+
+        <article class="day" id="day-10" data-progress="1.00" data-pin="perth">
+          <button class="day-handle" aria-label="Drag to reorder">≡</button>
+          <header class="day-head">
+            <h3 class="day-num">Day 10<small> / 10</small></h3>
+            <span class="day-date">Mon · 29 Jun</span>
+          </header>
+          <h2 class="day-title">Family friends, then home.</h2>
+          <div class="day-photo">
+            <img src="https://images.unsplash.com/photo-1596518432888-11533e6ae2c5?w=1100&q=80&auto=format&fit=crop" alt="Perth coffee" loading="lazy"/>
+            <span class="caption">Perth, coffee &amp; warm rolls</span>
+          </div>
+          <p class="day-lede">Last day. A long brunch with family friends, a lazy afternoon, then the evening flight back to Singapore.</p>
+          <ul class="day-stops">
+            <li><span class="time">10:00</span> Brunch with family friends</li>
+            <li><span class="time">14:00</span> Pack, last walk on the Swan</li>
+            <li><span class="time">15:30</span> Uber to Perth Airport, T1</li>
+            <li><span class="time">18:25</span> ✈️ Perth → Singapore (TR9, lands 23:45)</li>
+          </ul>
+          <div class="day-foot">
+            <span><span class="pill">heads-up</span>Be at terminal 2½ h early. Scoot is strict.</span>
+          </div>
+        </article>
+
+      </div>
+    </main>
+  </div>
+</section>
+
+<!-- ╭───────── BRIEF ─────────╮ -->
+<section class="aside" id="brief">
+  <div class="aside-inner">
+    <h2>The <em>practical</em> brief.</h2>
+    <p class="lead">Quick reference for on the trip. Flights, weather, drives, and what to book before you leave.</p>
+    <div class="brief-grid">
+      <div class="brief-card">
+        <h3>Flights</h3>
+        <div class="row"><span>SIN, PER</span><b>20 Jun · 12:00 to 17:10 · TR8</b></div>
+        <div class="row"><span>SYD, PER</span><b>20 Jun · 11:50 to 14:55 · JQ986</b></div>
+        <div class="row"><span>PER, SYD</span><b>28 Jun · 16:05 to 22:10 · JQ987</b></div>
+        <div class="row"><span>PER, SIN</span><b>29 Jun · 18:25 to 23:45 · TR9</b></div>
+      </div>
+      <div class="brief-card">
+        <h3>Drives</h3>
+        <div class="row"><span>Perth to Bunbury</span><b>180 km · 2 h 15</b></div>
+        <div class="row"><span>Bunbury to Dunsborough</span><b>100 km · 1 h 15</b></div>
+        <div class="row"><span>Dunsborough to MR</span><b>50 km · 45 min</b></div>
+        <div class="row"><span>MR to Cape Leeuwin</span><b>40 km · 35 min</b></div>
+        <div class="row"><span>Cape Leeuwin to Perth</span><b>320 km · 3 h 40</b></div>
+      </div>
+      <div class="brief-card">
+        <h3>Weather</h3>
+        <ul>
+          <li>Winter. Average 11 to 18°C in Perth.</li>
+          <li>Possible afternoon showers down south.</li>
+          <li>Sea is around 17°C, swim only if brave.</li>
+          <li>Sunrise 7:15, sunset 17:20.</li>
+        </ul>
+      </div>
+      <div class="brief-card">
+        <h3>Pack list</h3>
+        <ul>
+          <li>Layers, light fleece, rain shell.</li>
+          <li>Walking shoes (Cape Naturaliste, Rottnest).</li>
+          <li>Swimsuit + thin towel.</li>
+          <li>AU 3-pin adapter (Type I).</li>
+          <li>Sunscreen, sunglasses.</li>
+        </ul>
+      </div>
+      <div class="brief-card">
+        <h3>Book before you leave</h3>
+        <ul>
+          <li><a href="https://www.rottnestexpress.com.au/" target="_blank" rel="noopener">Rottnest ferry</a> + bike, day 8.</li>
+          <li><a href="https://www.legendcharters.com.au/" target="_blank" rel="noopener">Whale tour</a>, day 4.</li>
+          <li>Mammoth Cave self-tour, day 5.</li>
+          <li>Rental car, Perth city pickup day 2.</li>
+          <li>IDP for at least one driver.</li>
+        </ul>
+      </div>
+      <div class="brief-card">
+        <h3>SIM &amp; signal</h3>
+        <ul>
+          <li>Tap to pay everywhere. No cash needed.</li>
+          <li>Optus 28-day Travel SIM at the airport.</li>
+          <li>Signal drops south of Bunbury.</li>
+          <li>Download Google Maps offline before you leave.</li>
+        </ul>
+      </div>
+      <div class="brief-card">
+        <h3>Numbers to keep</h3>
+        <ul>
+          <li>Emergency, <b>000</b>.</li>
+          <li>Non-emergency police, 131 444.</li>
+          <li>Rental roadside, in your booking app.</li>
+        </ul>
+      </div>
+      <div class="brief-card">
+        <h3>Veg eats by town</h3>
+        <ul>
+          <li>Perth, Annalakshmi, Saint Brigid, Tiisch.</li>
+          <li>Bunbury, Yours or Mine.</li>
+          <li>Dunsborough, The Pourhouse, Bunkers.</li>
+          <li>Margaret River, Settlers, Morries.</li>
+          <li>Fremantle, Bread in Common.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╭───────── NO CAR ─────────╮ -->
+<section class="aside alt nocar" id="nocar">
+  <div class="aside-inner">
+    <h2>Plan B, <em>no licence?</em></h2>
+    <p class="lead">If the IDPs don&rsquo;t come through, here is the same trip rebuilt around tours and trains.</p>
+    <ol class="nocar-list">
+      <li><b>Day 1</b> Arrive Perth, light dinner. Same.</li>
+      <li><b>Day 2</b> Penguin Island day trip, bus from Perth + ferry, around 5 h round trip.</li>
+      <li><b>Day 3 to 5</b> Book a 3-day Margaret River tour. Covers Cape Naturaliste, Mammoth Cave, Cape Leeuwin, vineyards, with overnights included.</li>
+      <li><b>Day 6</b> Recovery in Perth, slow brunch, Elizabeth Quay walk.</li>
+      <li><b>Day 7</b> Fremantle by train. Same.</li>
+      <li><b>Day 8</b> Rottnest by ferry. Same.</li>
+      <li><b>Day 9</b> Kings Park, airport drop, solo afternoon. Same.</li>
+      <li><b>Day 10</b> Family friends, evening flight. Same.</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="signoff">have the trip ☼</div>
+  <div>Binny &amp; Deepshikha · Chaitanya &amp; Ketaki</div>
+  <div>Perth · 20 to 29 June 2026</div>
+  <div class="small">Made with a sticky map, a toy car, and far too many vegetarian restaurant recommendations.</div>
+</footer>
+
+<!-- ╭───────── TOOLBAR ─────────╮ -->
+<div class="toolbar" id="toolbar">
+  <button id="btn-edit" class="primary"><span>✎</span><span class="label-long">Edit order</span></button>
+  <span class="sep"></span>
+  <button id="btn-share"><span>🔗</span><span class="label-long">Copy link</span></button>
+  <button id="btn-reset" class="ghost"><span>↺</span><span class="label-long">Reset</span></button>
+  <div class="toast" id="toolbar-toast"></div>
+</div>
+
+<!-- libs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const $ = id => document.getElementById(id);
+  const route       = $('route');
+  const car         = $('car-group');
+  const carRotor    = $('car-rotor');
+  const planeSIN    = $('plane-sin');
+  const planeSYD    = $('plane-syd');
+  const planeOutSYD = $('plane-out-syd');
+  const planeOutSIN = $('plane-out-sin');
+  const ferry       = $('ferry-icon');
+  const train       = $('train-icon');
+  const pins        = Array.from(document.querySelectorAll('.pin'));
+  const daysContainer = $('days-container');
+
+  const totalLen = route.getTotalLength();
+
+  /* ╭───────── state: URL + localStorage ─────────╮ */
+  const STORAGE_KEY = 'perth-trip-order-v1';
+
+  const defaultOrder = Array.from(daysContainer.children).map(el => el.id);
+
+  function isValidOrder(ids) {
+    if (!Array.isArray(ids) || ids.length !== defaultOrder.length) return false;
+    const set = new Set(ids);
+    if (set.size !== defaultOrder.length) return false;
+    for (const id of defaultOrder) if (!set.has(id)) return false;
+    return true;
+  }
+  function isDefaultOrder(ids) {
+    return ids.length === defaultOrder.length && ids.every((id, i) => id === defaultOrder[i]);
+  }
+
+  // resolve initial: 1) URL ?order=  2) localStorage  3) DOM default
+  function resolveInitial() {
+    const q = new URLSearchParams(window.location.search).get('order');
+    if (q) {
+      const ids = q.split(',').map(s => s.trim()).filter(Boolean);
+      if (isValidOrder(ids)) return ids;
+    }
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const ids = JSON.parse(stored);
+        if (isValidOrder(ids)) return ids;
+      }
+    } catch (_) {}
+    return defaultOrder.slice();
+  }
+
+  function applyOrder(ids) {
+    // reorder DOM children
+    const byId = {};
+    Array.from(daysContainer.children).forEach(c => byId[c.id] = c);
+    ids.forEach(id => daysContainer.appendChild(byId[id]));
+    relabelDays(ids.length);
+  }
+
+  function relabelDays(total) {
+    Array.from(daysContainer.querySelectorAll('.day')).forEach((el, i) => {
+      const num = el.querySelector('.day-num');
+      const small = num.querySelector('small');
+      num.firstChild.nodeValue = `Day ${String(i + 1).padStart(2, '0')}`;
+      if (!small) {
+        const s = document.createElement('small');
+        s.textContent = ` / ${total}`;
+        num.appendChild(s);
+      }
+    });
+  }
+
+  function persistOrder(ids) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(ids)); } catch(_) {}
+    const u = new URL(window.location.href);
+    if (isDefaultOrder(ids)) u.searchParams.delete('order');
+    else u.searchParams.set('order', ids.join(','));
+    history.replaceState(null, '', u.toString());
+  }
+
+  // initial reorder
+  applyOrder(resolveInitial());
+
+  /* ╭───────── animations ─────────╮ */
+  let scrollTriggers = [];
+
+  function bindAnimations() {
+    scrollTriggers.forEach(st => st.kill && st.kill());
+    scrollTriggers = [];
+
+    const days  = Array.from(daysContainer.querySelectorAll('.day'));
+    const stops = days.map(d => parseFloat(d.dataset.progress));
+
+    setCarAt(stops[0] || 0);
+
+    for (let i = 0; i < days.length - 1; i++) {
+      const local = { p: stops[i] };
+      const tween = gsap.to(local, {
+        p: stops[i + 1],
+        ease: 'none',
+        onUpdate: () => setCarAt(local.p),
+        scrollTrigger: {
+          trigger: days[i],
+          start: 'center center',
+          endTrigger: days[i + 1],
+          end: 'center center',
+          scrub: 0.5,
+          invalidateOnRefresh: true
+        }
+      });
+      scrollTriggers.push(tween.scrollTrigger);
+    }
+
+    days.forEach(day => {
+      const pinKey = day.dataset.pin;
+      const dayId  = day.id;
+      const st = ScrollTrigger.create({
+        trigger: day,
+        start: 'top 65%',
+        end: 'bottom 35%',
+        onEnter:    () => onDayActive(dayId, pinKey),
+        onEnterBack:() => onDayActive(dayId, pinKey)
+      });
+      scrollTriggers.push(st);
+    });
+
+    setTimeout(() => ScrollTrigger.refresh(), 50);
+  }
+
+  function setCarAt(progress) {
+    progress = Math.max(0, Math.min(1, progress));
+    const len = totalLen * progress;
+    const pt  = route.getPointAtLength(len);
+    const ahead = route.getPointAtLength(Math.min(totalLen, len + 1.5));
+    const angle = Math.atan2(ahead.y - pt.y, ahead.x - pt.x) * 180 / Math.PI;
+    gsap.set(car, { x: pt.x, y: pt.y, xPercent: -50, yPercent: -50 });
+    const flip = (angle > 90 || angle < -90) ? -1 : 1;
+    gsap.set(carRotor, { scaleX: flip });
+  }
+
+  function setActivePin(key) {
+    pins.forEach(p => {
+      const dot   = p.querySelector('.pin-dot');
+      const pulse = p.querySelector('.pin-pulse');
+      const active = (p.dataset.key === key);
+      if (dot) {
+        gsap.to(dot, { attr: { r: active ? 7 : (p.dataset.key === 'perth' ? 6 : 4.5) }, duration: 0.4, ease: 'power2.out' });
+        gsap.to(dot, { fill: active ? '#e76f51' : (p.dataset.key === 'perth' ? '#e76f51' : '#2a9d8f'), duration: 0.4 });
+      }
+      if (pulse) (active ? pulse.classList.add('on') : pulse.classList.remove('on'));
+    });
+  }
+
+  // Vehicle behaviour keys off the day's `data-pin`, so reordering still picks the right vehicle.
+  function onDayActive(dayId, pinKey) {
+    setActivePin(pinKey);
+    if (dayId === 'day-1') {
+      gsap.to(car, { opacity: 0.0, duration: 0.3 });
+      animatePlanesIn();
+    } else {
+      gsap.to(car, { opacity: 1.0, duration: 0.5 });
+    }
+    gsap.to(train, { opacity: pinKey === 'fremantle' ? 1 : 0, duration: 0.4 });
+    gsap.to(ferry, { opacity: pinKey === 'rottnest' ? 1 : 0, duration: 0.4 });
+    if (dayId === 'day-9') animateOutSYD();
+    if (dayId === 'day-10') {
+      animateOutSIN();
+      gsap.to(car, { opacity: 0.4, duration: 0.4 });
+    }
+  }
+
+  let planesInPlayed = false;
+  function animatePlanesIn() {
+    if (planesInPlayed) return;
+    planesInPlayed = true;
+    gsap.fromTo(planeSIN,
+      { x: -10, y: 40, opacity: 0, rotation: 25 },
+      { x: 270, y: 108, opacity: 1, rotation: 50, duration: 2.4, ease: 'power1.inOut',
+        onComplete: () => gsap.to(planeSIN, { opacity: 0, duration: 0.6, delay: 0.4 }) });
+    gsap.fromTo(planeSYD,
+      { x: 410, y: 40, opacity: 0, rotation: -25 },
+      { x: 270, y: 108, opacity: 1, rotation: -50, duration: 2.4, ease: 'power1.inOut',
+        onComplete: () => gsap.to(planeSYD, { opacity: 0, duration: 0.6, delay: 0.4 }) });
+  }
+  let outSYDPlayed = false;
+  function animateOutSYD() {
+    if (outSYDPlayed) return;
+    outSYDPlayed = true;
+    gsap.fromTo(planeOutSYD,
+      { x: 270, y: 108, opacity: 1, rotation: 35 },
+      { x: 410, y: 40, opacity: 0, rotation: 35, duration: 2.4, ease: 'power1.in' });
+  }
+  let outSINPlayed = false;
+  function animateOutSIN() {
+    if (outSINPlayed) return;
+    outSINPlayed = true;
+    gsap.fromTo(planeOutSIN,
+      { x: 270, y: 108, opacity: 1, rotation: 200 },
+      { x: -20, y: 40, opacity: 0, rotation: 200, duration: 2.4, ease: 'power1.in' });
+  }
+
+  gsap.set(train,        { x: 240, y: 118 });
+  gsap.set(ferry,        { x: 200, y: 135 });
+  gsap.set(planeOutSYD,  { x: 270, y: 108 });
+  gsap.set(planeOutSIN,  { x: 270, y: 108 });
+
+  bindAnimations();
+
+  window.addEventListener('resize', () => ScrollTrigger.refresh());
+
+  /* ╭───────── editing toolbar ─────────╮ */
+  let sortable = null;
+
+  $('btn-edit').addEventListener('click', toggleEdit);
+  $('btn-share').addEventListener('click', copyShareLink);
+  $('btn-reset').addEventListener('click', resetOrder);
+
+  function toggleEdit() {
+    const editing = !document.body.classList.contains('editing');
+    document.body.classList.toggle('editing', editing);
+    $('toolbar').classList.toggle('editing', editing);
+    $('btn-edit').firstElementChild.textContent = editing ? '✓' : '✎';
+    $('btn-edit').lastElementChild.textContent  = editing ? 'Done' : 'Edit order';
+    if (editing) enableSortable();
+    else disableSortable();
+  }
+  function enableSortable() {
+    if (sortable) return;
+    sortable = Sortable.create(daysContainer, {
+      animation: 220,
+      handle: '.day-handle',
+      ghostClass: 'sortable-ghost',
+      chosenClass: 'sortable-chosen',
+      forceFallback: true,
+      fallbackTolerance: 4,
+      onEnd: () => {
+        const ids = Array.from(daysContainer.querySelectorAll('.day')).map(el => el.id);
+        relabelDays(ids.length);
+        persistOrder(ids);
+        bindAnimations();
+        toast('Saved.');
+      }
+    });
+  }
+  function disableSortable() {
+    if (sortable) { sortable.destroy(); sortable = null; }
+  }
+
+  function copyShareLink() {
+    const u = window.location.href;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(u).then(() => toast('Link copied.'));
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = u; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); toast('Link copied.'); }
+      catch(_) { toast('Could not copy.'); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  function resetOrder() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch(_) {}
+    const u = new URL(window.location.href);
+    u.searchParams.delete('order');
+    history.replaceState(null, '', u.toString());
+    applyOrder(defaultOrder.slice());
+    bindAnimations();
+    toast('Reset to default.');
+  }
+
+  let toastTimer = null;
+  function toast(msg) {
+    const el = $('toolbar-toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
+  }
+</script>
+</body>
+</html>
