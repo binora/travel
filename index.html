@@ -259,6 +259,192 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   }
+
+  /* ╭───────── MOBILE: full-screen map + bottom sheet ─────────╮ */
+  @media (max-width: 899px) {
+    .trip {
+      height: 100vh;
+      height: 100svh;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--coast);
+    }
+    .trip-grid { display: block; height: 100%; }
+
+    .map-pane {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      border-bottom: none;
+      border-right: none;
+      box-shadow: none;
+      z-index: 1;
+    }
+    .map-frame { inset: 0.4rem; }
+    .map-title { top: 0.7rem; left: 0.9rem; font-size: 1.15rem; }
+    .map-legend { bottom: calc(96px + 0.8rem); right: 0.9rem; font-size: 0.85rem; }
+
+    .map-hint {
+      position: absolute;
+      bottom: calc(96px + 1rem);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      z-index: 3;
+      white-space: nowrap;
+      opacity: 0.92;
+      pointer-events: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+      animation: hintBob 2.6s ease-in-out infinite;
+    }
+    @keyframes hintBob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-3px); } }
+    body.sheet-open .map-hint, body.sheet-touched .map-hint { display: none; }
+
+    .pin { cursor: pointer; }
+    .pin .pin-tap {
+      fill: transparent;
+      pointer-events: all;
+    }
+
+    /* CARDS PANE → BOTTOM SHEET */
+    .cards-pane {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 88%;
+      transform: translateY(calc(100% - 96px));
+      transition: transform 0.34s cubic-bezier(0.2, 0.85, 0.25, 1);
+      background: var(--paper);
+      border-radius: 22px 22px 0 0;
+      box-shadow: 0 -12px 30px rgba(38,70,83,0.22);
+      z-index: 4;
+      padding: 0;
+      overflow: hidden;
+      max-width: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .cards-pane.open { transform: translateY(0); }
+
+    .sheet-header {
+      flex: 0 0 96px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.55rem 1rem 0.6rem;
+      border-bottom: 1px solid var(--sand);
+      background: var(--paper);
+      border-radius: 22px 22px 0 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sheet-grip {
+      width: 44px; height: 4px;
+      background: rgba(38,70,83,0.18);
+      border-radius: 4px;
+      align-self: center;
+      margin-bottom: 0.6rem;
+    }
+    .sheet-current {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0 0.1rem;
+    }
+    .sheet-current .num {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--terracotta);
+      flex: 0 0 auto;
+      line-height: 1.2;
+    }
+    .sheet-current .ttl {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.25;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .sheet-current .chev {
+      flex: 0 0 auto;
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      transition: transform 0.3s;
+    }
+    .cards-pane.open .sheet-current .chev { transform: rotate(180deg); }
+
+    .edit-banner { display: none !important; }
+
+    /* HORIZONTAL DECK */
+    #days-container {
+      flex: 1;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 0;
+      scrollbar-width: none;
+    }
+    #days-container::-webkit-scrollbar { display: none; }
+
+    .day {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 1.1rem 1.3rem 2.5rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+    .day:first-child { padding-top: 1.1rem; }
+    .day-head { gap: 0.7rem; margin-bottom: 0.3rem; }
+    .day-num { font-size: 2rem; }
+    .day-num small { font-size: 0.45em; }
+    .day-date { font-size: 1.15rem; }
+    .day-title { font-size: 1.4rem; margin: 0.25rem 0 0.95rem; }
+    .day-photo { margin: 0.2rem 0 1rem; aspect-ratio: 16/10; transform: none !important; box-shadow: 0 6px 16px rgba(38,70,83,0.14), 0 0 0 4px var(--paper), 0 0 0 5px var(--coast); }
+    .day-photo .caption { font-size: 0.95rem; }
+    .day-lede { font-size: 0.97rem; margin-bottom: 1rem; }
+    .day-stops { margin-bottom: 1rem; }
+    .day-stops li { font-size: 0.92rem; padding: 0.45rem 0 0.45rem 0.8rem; }
+    .day-foot { font-size: 0.88rem; gap: 1rem; }
+
+    .scroll-cue { display: none; }
+    body.sheet-open { overflow: hidden; }
+    body.sheet-open .toolbar {
+      opacity: 0;
+      transform: translateX(-50%) translateY(28px);
+      pointer-events: none;
+    }
+    .toolbar { transition: opacity 0.25s, transform 0.25s; }
+
+    /* edit on mobile: collapse the deck back to a vertical list so sortable works */
+    body.editing .cards-pane { transform: translateY(0); height: 100%; border-radius: 0; }
+    body.editing #days-container { flex-direction: column; overflow-x: hidden; overflow-y: auto; scroll-snap-type: none; padding: 0 1rem 5rem; }
+    body.editing .day { flex: 0 0 auto; width: 100%; height: auto; min-height: 0; padding: 1rem 0; border-bottom: 1px dashed var(--coast); overflow: visible; scroll-snap-align: none; }
+    body.editing .day-photo { aspect-ratio: 16/8; }
+    body.editing .sheet-header { display: none; }
+    body.editing .day-handle { top: 1rem; right: 0.5rem; }
+  }
+
+  /* ╭───────── DESKTOP: hide mobile-only chrome ─────────╮ */
+  @media (min-width: 900px) {
+    .sheet-header, .map-hint { display: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -291,6 +477,7 @@
       <div class="map-frame"></div>
       <div class="map-title hand">our route, Western Australia</div>
       <div class="map-legend hand"><strong>jun 2026</strong>follow the car</div>
+      <div class="map-hint" id="map-hint">tap a pin to see the day</div>
 
       <svg viewBox="0 0 400 700" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-label="Hand-drawn map of South-West Western Australia">
         <defs>
@@ -426,6 +613,14 @@
     </aside>
 
     <main class="cards-pane" id="cards-pane">
+      <div class="sheet-header" id="sheet-header" role="button" aria-label="Toggle day sheet">
+        <span class="sheet-grip"></span>
+        <div class="sheet-current">
+          <span class="num" id="sheet-num">Day 01</span>
+          <span class="ttl" id="sheet-ttl">Two planes land in Perth.</span>
+          <span class="chev">▲</span>
+        </div>
+      </div>
       <div class="edit-banner">
         <b>Edit mode.</b> Drag the handle (≡) on the right of any day to reorder. Tap <b>Copy link</b> to share this exact arrangement.
       </div>
@@ -1011,7 +1206,150 @@
   gsap.set(planeOutSYD,  { x: 270, y: 108 });
   gsap.set(planeOutSIN,  { x: 270, y: 108 });
 
-  bindAnimations();
+  /* ╭───────── mobile sheet ─────────╮ */
+  function teardownDesktop() {
+    scrollTriggers.forEach(st => st.kill && st.kill());
+    scrollTriggers = [];
+  }
+
+  let mobileTeardown = null;
+
+  function bindMobileSheet() {
+    const sheet  = $('cards-pane');
+    const header = $('sheet-header');
+    const deck   = $('days-container');
+    const numEl  = $('sheet-num');
+    const ttlEl  = $('sheet-ttl');
+    const days   = Array.from(deck.querySelectorAll('.day'));
+
+    // larger transparent tap targets on each pin (one-time)
+    const NS = 'http://www.w3.org/2000/svg';
+    pins.forEach(p => {
+      if (!p.querySelector('.pin-tap')) {
+        const c = document.createElementNS(NS, 'circle');
+        c.setAttribute('class', 'pin-tap');
+        c.setAttribute('r', '16');
+        c.setAttribute('fill', 'transparent');
+        p.insertBefore(c, p.firstChild);
+      }
+    });
+
+    function updateHeader(day) {
+      const numTxt = day.querySelector('.day-num').firstChild.nodeValue.trim();
+      const ttlTxt = day.querySelector('.day-title').textContent.trim();
+      numEl.textContent = numTxt;
+      ttlEl.textContent = ttlTxt;
+    }
+
+    function openSheet() {
+      sheet.classList.add('open');
+      document.body.classList.add('sheet-open');
+      document.body.classList.add('sheet-touched');
+    }
+    function closeSheet() {
+      sheet.classList.remove('open');
+      document.body.classList.remove('sheet-open');
+    }
+
+    // initial state
+    setCarAt(parseFloat(days[0].dataset.progress) || 0);
+    setActivePin(days[0].dataset.pin);
+    updateHeader(days[0]);
+
+    // header tap → toggle
+    const onHeader = (e) => {
+      e.preventDefault();
+      sheet.classList.contains('open') ? closeSheet() : openSheet();
+    };
+    header.addEventListener('click', onHeader);
+
+    // pin tap → scroll deck to matching day, open
+    const pinHandlers = [];
+    pins.forEach(p => {
+      const fn = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const key = p.dataset.key;
+        const idx = days.findIndex(d => d.dataset.pin === key);
+        if (idx < 0) return;
+        // jump deck scroll left → day index
+        deck.scrollTo({ left: idx * deck.clientWidth, behavior: 'smooth' });
+        openSheet();
+        // active state will follow via scroll listener
+      };
+      p.addEventListener('click', fn);
+      pinHandlers.push([p, fn]);
+    });
+
+    // deck scroll → derive active day, sync map
+    let scrollTimer;
+    const onDeckScroll = () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const idx = Math.round(deck.scrollLeft / deck.clientWidth);
+        const day = days[idx];
+        if (!day) return;
+        updateHeader(day);
+        setCarAt(parseFloat(day.dataset.progress));
+        onDayActive(day.id, day.dataset.pin);
+      }, 70);
+    };
+    deck.addEventListener('scroll', onDeckScroll, { passive: true });
+
+    // touch drag on the header
+    let dragStartY = null;
+    let dragStartOpen = false;
+    const onTouchStart = (e) => {
+      if (!e.touches || e.touches.length !== 1) return;
+      dragStartY = e.touches[0].clientY;
+      dragStartOpen = sheet.classList.contains('open');
+    };
+    const onTouchMove = (e) => {
+      if (dragStartY === null) return;
+      const dy = e.touches[0].clientY - dragStartY;
+      if (dragStartOpen && dy > 70) { closeSheet(); dragStartY = null; }
+      else if (!dragStartOpen && dy < -50) { openSheet(); dragStartY = null; }
+    };
+    const onTouchEnd = () => { dragStartY = null; };
+    header.addEventListener('touchstart', onTouchStart, { passive: true });
+    header.addEventListener('touchmove',  onTouchMove,  { passive: true });
+    header.addEventListener('touchend',   onTouchEnd);
+
+    // escape key closes sheet
+    const onKey = (e) => { if (e.key === 'Escape') closeSheet(); };
+    window.addEventListener('keydown', onKey);
+
+    return () => {
+      header.removeEventListener('click', onHeader);
+      header.removeEventListener('touchstart', onTouchStart);
+      header.removeEventListener('touchmove', onTouchMove);
+      header.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('keydown', onKey);
+      pinHandlers.forEach(([p, fn]) => p.removeEventListener('click', fn));
+      deck.removeEventListener('scroll', onDeckScroll);
+      document.body.classList.remove('sheet-open', 'sheet-touched');
+      sheet.classList.remove('open');
+    };
+  }
+
+  /* ╭───────── mode router ─────────╮ */
+  const MOBILE_MQ = window.matchMedia('(max-width: 899px)');
+  let currentMode = null;
+
+  function setupMode() {
+    const next = MOBILE_MQ.matches ? 'mobile' : 'desktop';
+    if (next === currentMode) return;
+    if (currentMode === 'desktop') teardownDesktop();
+    if (currentMode === 'mobile' && mobileTeardown) { mobileTeardown(); mobileTeardown = null; }
+    currentMode = next;
+    if (next === 'desktop') bindAnimations();
+    else mobileTeardown = bindMobileSheet();
+  }
+
+  setupMode();
+  MOBILE_MQ.addEventListener
+    ? MOBILE_MQ.addEventListener('change', setupMode)
+    : MOBILE_MQ.addListener(setupMode); // safari fallback
 
   window.addEventListener('resize', () => ScrollTrigger.refresh());
 
@@ -1044,7 +1382,14 @@
         const ids = Array.from(daysContainer.querySelectorAll('.day')).map(el => el.id);
         relabelDays(ids.length);
         persistOrder(ids);
-        bindAnimations();
+        // refresh whichever mode is active
+        if (currentMode === 'desktop') {
+          teardownDesktop();
+          bindAnimations();
+        } else if (currentMode === 'mobile') {
+          if (mobileTeardown) mobileTeardown();
+          mobileTeardown = bindMobileSheet();
+        }
         toast('Saved.');
       }
     });
@@ -1072,7 +1417,13 @@
     u.searchParams.delete('order');
     history.replaceState(null, '', u.toString());
     applyOrder(defaultOrder.slice());
-    bindAnimations();
+    if (currentMode === 'desktop') {
+      teardownDesktop();
+      bindAnimations();
+    } else if (currentMode === 'mobile') {
+      if (mobileTeardown) mobileTeardown();
+      mobileTeardown = bindMobileSheet();
+    }
     toast('Reset to default.');
   }
 
